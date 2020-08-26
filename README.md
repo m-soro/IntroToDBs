@@ -49,13 +49,13 @@
     - results in:
     ```
     We just saved a cat to the DB:
-{
-  _id: 5f42cdb340fc55340e9ac815,
-  name: 'George',
-  age: 11,
-  temperament: 'Grouchy',
-  __v: 0
-}
+    {
+      _id: 5f42cdb340fc55340e9ac815,
+      name: 'George',
+      age: 11,
+      temperament: 'Grouchy',
+      __v: 0
+    }
     ```
     - the variable `george` doesnt really matter, we're just using this as a javascript variable to communicate to our database `cat` is what really coming from the database.
 
