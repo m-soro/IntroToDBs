@@ -14,7 +14,7 @@
 
     - to define a pattern to our database:
     ```
-    var catSchema = new mongoose.catSchema({
+    var catSchema = new Schema({
         name: String,
         age: Number,
         temperament: String
@@ -24,6 +24,15 @@
     - save it to a variable after compiling it to a *model*, we can just use the said variable to CRUD:
     `var Cat = mongoose.model('Cat', catSchema);` *not that variable is the single version of any given name and Capitalize the first letter*
     - you can then use `Cat.create`, `Cat.find`, etc...
+
+    - to add a new cat:
+    ```
+    var george = new Cat({
+      name: 'George',
+      age: 11,
+      temperament: 'Grouchy'
+    });
+    ```
 
     - to save to a database, with a callback function
     ```
@@ -36,3 +45,23 @@
       }
     });
     ```
+
+    - results in:
+    ```
+    We just saved a cat to the DB:
+{
+  _id: 5f42cdb340fc55340e9ac815,
+  name: 'George',
+  age: 11,
+  temperament: 'Grouchy',
+  __v: 0
+}
+    ```
+    - the variable `george` doesnt really matter, we're just using this as a javascript variable to communicate to our database `cat` is what really coming from the database.
+
+    - to check:
+      - go to directory run in terminal `mongo`
+      - `show dbs`
+      - `use <FileYouHadSavedOnMongoose.connect>`
+      - `show collections`
+      - `cats` is automatically pluralized!

@@ -13,9 +13,9 @@ var Cat = mongoose.model('Cat', catSchema);
 // adding a new cat to db
 
 var george = new Cat({
-  name: 'George',
-  age: 11,
-  temperament: 'Grouchy'
+  name: 'Mrs. Norris',
+  age: 7,
+  temperament: 'Evil'
 });
 
 // save and define a call back function
