@@ -1,7 +1,8 @@
 # Intro to Mongoose      
 
   * What is Mongoose?
-    - helps us interact with MongoDB inside the javascript file.
+    - ODM object data mapper allows us write javascript file that interacts with database.
+
   * Why are we using it?
 
   * Interact with mongodb with mongoose
@@ -12,20 +13,23 @@
     var Schema = mongoose.Schema;
     ```
 
-    - to define a pattern to our database:
+    - to define a pattern or schema to our database:
     ```
     var catSchema = new Schema({
         name: String,
         age: Number,
         temperament: String
     });
+
+    var Cat = mongoose.model('Cat', catSchema);
     ```
 
     - save it to a variable after compiling it to a *model*, we can just use the said variable to CRUD:
-    `var Cat = mongoose.model('Cat', catSchema);` *not that variable is the single version of any given name and Capitalize the first letter*
+    `var Cat = mongoose.model('Cat', catSchema);` *note that variable is the single version of any given name and Capitalize the first letter*
+    - this returns an object that has a bunch of method like `create`, `find` etc,
     - you can then use `Cat.create`, `Cat.find`, etc...
 
-    - to add a new cat:
+    - to add/create a new cat:
     ```
     var george = new Cat({
       name: 'George',
@@ -57,7 +61,7 @@
       __v: 0
     }
     ```
-    - the variable `george` doesnt really matter, we're just using this as a javascript variable to communicate to our database `cat` is what really coming from the database.
+    - the variable `george` doesn't really matter, we're just using this as a javascript variable to communicate to our database `cat` is what really coming from the database.
 
     - to check:
       - go to directory run in terminal `mongo`
@@ -65,3 +69,23 @@
       - `use <FileYouHadSavedOnMongoose.connect>`
       - `show collections`
       - `cats` is automatically pluralized!
+
+    - to retrieve data from db:
+      - use the `find` method on `Cat` which is the *model*, `var Cat = mongoose.model('Cat', catSchema);`.
+      - passing an empty object retrieves all of the cats and the call back function parameters can be named as how we choose to.
+      - passing in a callback function because it may take some time or not even be execute.
+      ```
+      Cat.find({}, function(err, cats){
+        if(err){
+          console.log('Oh no, error!');
+          console.log(err);
+        } else {
+          console.log('Here are all the cats');
+          console.log(cats);
+        }
+      });
+      ```
+      - running this code will retrieve all of the cats!
+
+    - to create a new item in db:
+      - use the `create` method, which is `new` and `save` all at once!.
